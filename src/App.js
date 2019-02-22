@@ -1,40 +1,56 @@
 import React, { Component } from 'react';
-import Table from './Table';
-import Form from './Form';
 import './App.css';
-
-
-
+import TacticsTabContainer from './TacticsTabContainer'
 
 
 class App extends Component {
-    state= {
-        characters: []
-    };
-    
-    removeCharacter = index => {
-        const {characters}= this.state;
 
-        this.setState({
-            characters: characters.filter((character, i)=> {
-                return i !== index;
-            })
-        });
-    }
-
-    handleSubmit = character =>{
-        this.setState({characters: [...this.state.characters,character]});
-    }
 
     render() {
-        const {characters}= this.state;
+
+        const defenseRows =
+            {
+                'DefensiveStyle':[
+                    'Drop Back',
+                    'Balanced',
+                    'Pressure on Heavy Touch',
+                    'Press after possesion Loss',
+                    'constant Pressure'
+                ],
+                'DefensiveWidth':'slider',
+                'Depth':'slider'
+            };
+        
+
+        const offenseRows =[
+            {
+                'OffensiveStyle':[
+                    'Possesion',
+                    'Balanced',
+                    'Long Ball',
+                    'Fast Build up',
+                    'constant Pressure'
+                ]
+            },
+            {
+                'OffensiveWidth':'slider'
+            },
+            {
+                'Players in Box':'slider'
+            },
+            {
+                'Corners':'slider'
+            },
+            {
+                'Freekicks':'slider'
+            }
+        ];
+
         return (
             <div className="container">
-                <Table 
-                    characterData ={characters} 
-                    removeCharacter= {this.removeCharacter}
-                />
-                <Form handleSubmit={this.handleSubmit} />
+                <h1>Custom Fifa Tactics</h1>
+                <TacticsTabContainer data={defenseRows} />
+                {/* <TacticsTabContainer data={offenseRows} /> */}
             </div>
         );
     }
